@@ -10,6 +10,7 @@ import { HeroService } from './hero.service';
 @Component({
   selector: 'hero-detail',
   template: `
+    <button (click)="goBack()">Back</button>
     <div *ngIf="hero">
       <h2>{{hero.name}} details!</h2>
       <div>
@@ -35,5 +36,9 @@ export class HeroDetailComponent implements OnInit {
     this.route.paramMap
       .switchMap((params: ParamMap) => this.heroService.getHero(+params.get('id')))
       .subscribe(hero => this.hero = hero);
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }
